@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +26,26 @@ namespace Covid2020
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private void ControlMenu_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Controls_Grid.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Controls_Grid.Visibility = Visibility.Collapsed;
+        }
+
+        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            CoreApplication.Exit();
+        }
+
+        private void Start_Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
