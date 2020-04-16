@@ -8,28 +8,26 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Grid x:Name="MainMenu_Grid" Background="#FFA4A3A3">
-            <TextBlock HorizontalAlignment="Left" Margin="457,118,0,0" Text="Covid 2020" TextWrapping="Wrap" VerticalAlignment="Top" Height="84" Width="379" FontSize="60" FontWeight="Bold"/>
-            <Button x:Name="Start_Button" Content="Start" Margin="0,253,0,0" VerticalAlignment="Top" Height="52" Width="230" HorizontalAlignment="Center" FontSize="18" Click="Start_Button_Click"/>
-            <Button x:Name="Exit_Button" Content="Exit" Margin="0,406,0,0" VerticalAlignment="Top" Height="52" Width="230" HorizontalAlignment="Center" FontSize="18" Click="Exit_Button_Click"/>
-            <Button x:Name="ControlMenu_Button" Content="Controls" Margin="0,328,0,0" VerticalAlignment="Top" Height="52" Width="230" HorizontalAlignment="Center" FontSize="18" Click="ControlMenu_Button_Click"/>
-            <Grid x:Name="Controls_Grid" Background="#FFCFCFCF" Margin="329,69,281,151" Visibility="Collapsed">
-                <TextBlock HorizontalAlignment="Center" Margin="0,56,0,0" Text="Controls" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
-                <TextBlock HorizontalAlignment="Left" Margin="111,146,0,0" Text="Move Left : A" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="109" FontSize="18"/>
-                <TextBlock HorizontalAlignment="Left" Margin="111,233,0,0" Text="Move Down : S" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="130" FontSize="18" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                    <TextBlock.RenderTransform>
-                        <CompositeTransform Rotation="-0.029"/>
-                    </TextBlock.RenderTransform>
-                </TextBlock>
-                <TextBlock HorizontalAlignment="Left" Margin="111,204,0,0" Text="Move Up : W" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="109" FontSize="18"/>
-                <TextBlock HorizontalAlignment="Left" Margin="111,175,0,0" Text="Move Right : D" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="132" FontSize="18"/>
-                <TextBlock HorizontalAlignment="Left" Margin="111,262,0,0" Text="Shoot : L-Click" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="136" FontSize="18"/>
-                <TextBlock HorizontalAlignment="Left" Margin="109,291,0,0" Text="Aim : Mouse Position" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="181" FontSize="18"/>
-                <Button Content="Return To Menu" Margin="264,382,0,0" VerticalAlignment="Top" Height="49" Width="136" FontSize="16" Click="Button_Click"/>
-                <TextBlock HorizontalAlignment="Left" Margin="109,320,0,0" Text="Exit to Menu : Esc." TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="181" FontSize="18"/>
-            </Grid>
+    <Grid x:Name="MainMenu_Grid" Background="#FFA4A3A3" Visibility="Visible">
+        <TextBlock HorizontalAlignment="Left" Margin="457,118,0,0" Text="Covid 2020" TextWrapping="Wrap" VerticalAlignment="Top" Height="84" Width="379" FontSize="60" FontWeight="Bold"/>
+        <Button x:Name="Start_Button" Content="Start" Margin="0,253,0,0" VerticalAlignment="Top" Height="52" Width="230" HorizontalAlignment="Center" FontSize="18" Click="Start_Button_Click"/>
+        <Button x:Name="Exit_Button" Content="Exit" Margin="0,406,0,0" VerticalAlignment="Top" Height="52" Width="230" HorizontalAlignment="Center" FontSize="18" Click="Exit_Button_Click"/>
+        <Button x:Name="ControlMenu_Button" Content="Controls" Margin="0,328,0,0" VerticalAlignment="Top" Height="52" Width="230" HorizontalAlignment="Center" FontSize="18" Click="ControlMenu_Button_Click"/>
+        <Grid x:Name="Controls_Grid" Background="#FFCFCFCF" Margin="329,69,281,151" Visibility="Collapsed">
+            <TextBlock HorizontalAlignment="Center" Margin="0,56,0,0" Text="Controls" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="111,146,0,0" Text="Move Left : A" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="109" FontSize="18"/>
+            <TextBlock HorizontalAlignment="Left" Margin="111,233,0,0" Text="Move Down : S" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="130" FontSize="18" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform Rotation="-0.029"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="111,204,0,0" Text="Move Up : W" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="109" FontSize="18"/>
+            <TextBlock HorizontalAlignment="Left" Margin="111,175,0,0" Text="Move Right : D" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="132" FontSize="18"/>
+            <TextBlock HorizontalAlignment="Left" Margin="111,262,0,0" Text="Shoot : L-Click" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="136" FontSize="18"/>
+            <TextBlock HorizontalAlignment="Left" Margin="109,291,0,0" Text="Aim : Mouse Position" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="181" FontSize="18"/>
+            <Button Content="Return To Menu" Margin="264,382,0,0" VerticalAlignment="Top" Height="49" Width="136" FontSize="16" Click="Button_Click"/>
+            <TextBlock HorizontalAlignment="Left" Margin="109,320,0,0" Text="Exit to Menu : Esc." TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="181" FontSize="18"/>
         </Grid>
-
     </Grid>
+
 </Page>
