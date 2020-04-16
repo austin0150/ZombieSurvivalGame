@@ -46,7 +46,7 @@ namespace Covid2020
 
         private void Start_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(Game));
         }
 
         
