@@ -11,5 +11,11 @@
 
     <Grid>
         <canvas:CanvasAnimatedControl x:Name="canvas" Draw="Canvas_Draw" Update="Canvas_Update" CreateResources="Canvas_CreateResources" />
+        <Grid x:Name="PauseMenu_Grid" Background="#FFBBBBBB" Margin="427,151,426,150" Visibility="Collapsed">
+            <TextBlock x:Name="Paused_TextBlock" HorizontalAlignment="Center" Margin="0,48,0,0" Text="Paused" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
+            <Button x:Name="PauseMenuResume_Button" Content="Resume" Margin="0,113,0,0" VerticalAlignment="Top" Height="39" Width="201" HorizontalAlignment="Center" Click="PauseMenuResume_Button_Click"/>
+            <Button x:Name="PauseMenuReset_Button" Content="Reset" Margin="0,231,0,0" VerticalAlignment="Top" Height="39" Width="201" HorizontalAlignment="Center" Click="PauseMenuReset_Button_Click"/>
+            <Button x:Name="PauseMenuExit_Button" Content="Exit" Margin="0,171,0,0" VerticalAlignment="Top" Height="39" Width="201" HorizontalAlignment="Center" Click="PauseMenuExit_Button_Click"/>
+        </Grid>
     </Grid>
 </Page>

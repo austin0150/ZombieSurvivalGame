@@ -21,11 +21,13 @@ namespace Covid2020
     public sealed partial class Game : Page
     {
         private CovidGame covidGame;
+        private bool PAUSED;
 
         public Game()
         {
             this.InitializeComponent();
 
+            PAUSED = false;
             covidGame = new CovidGame(canvas.Size.ToVector2()/2);
 
             Window.Current.CoreWindow.KeyDown += Canvas_KeyDown;
@@ -81,7 +83,8 @@ namespace Covid2020
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Escape)
             {
-                // pause
+                PAUSED = true;
+                PauseMenu_Grid.Visibility = Visibility.Visible;
             }
         }
 
@@ -102,7 +105,11 @@ namespace Covid2020
         {
             if (this.covidGame.GameOver == false)
             {
-                covidGame.Draw(args.DrawingSession);
+                if(!PAUSED)
+                {
+                    covidGame.Draw(args.DrawingSession);
+                }
+                
             }
         }
 
@@ -125,7 +132,27 @@ namespace Covid2020
 
         private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            covidGame.Update();
+            if(!PAUSED)
+            {
+                covidGame.Update();
+            }
+            
+        }
+
+        private void PauseMenuResume_Button_Click(object sender, RoutedEventArgs e)
+        {
+            PAUSED = false;
+            PauseMenu_Grid.Visibility = Visibility.Collapsed;
+        }
+
+        private void PauseMenuExit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private void PauseMenuReset_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Game));
         }
     }
 }
