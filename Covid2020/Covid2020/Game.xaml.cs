@@ -1,5 +1,4 @@
-﻿using Covid2020.Assets;
-using Microsoft.Graphics.Canvas;
+﻿using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Brushes;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
@@ -147,7 +146,7 @@ namespace Covid2020
                     Vector2 point1 = covidGame.player.position;
                     point1.X += 50;
                     point1.Y += 30;
-                    Vector2 point2 = covidGame.player.pointPosition;
+                    Vector2 point2 = covidGame.player.targetPosition;
                     //set laser sight
                     args.DrawingSession.DrawLine(point1, point2, color, 5);
 

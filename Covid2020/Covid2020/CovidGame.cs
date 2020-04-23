@@ -1,14 +1,6 @@
-﻿using Covid2020.Assets;
-using Microsoft.Graphics.Canvas;
-using Microsoft.Graphics.Canvas.Brushes;
-using System;
+﻿using Microsoft.Graphics.Canvas;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.UI;
 
 namespace Covid2020
 {
@@ -54,7 +46,7 @@ namespace Covid2020
 
         public void SetPlayerAimLocation(Vector2 position)
         {
-            player.pointPosition = position;
+            player.targetPosition = position;
         }
 
         public void SetBitmaps(List<CanvasBitmap> moveBitmaps,
