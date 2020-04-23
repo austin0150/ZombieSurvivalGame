@@ -136,6 +136,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\floor.jpg" />
+    <Content Include="Assets\GUNSHOT.mp3" />
     <Content Include="Assets\pumpkin.png" />
     <Content Include="Assets\Soldier\idle\survivor-idle_rifle_0.png" />
     <Content Include="Assets\Soldier\idle\survivor-idle_rifle_1.png" />
