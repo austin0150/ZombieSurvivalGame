@@ -27,7 +27,7 @@ namespace Covid2020
             0.25 * Math.PI  // DownRight
         };
 
-        protected enum Direction
+        public enum Direction
         {
             Down,
             DownLeft,
@@ -50,7 +50,7 @@ namespace Covid2020
 
         }
 
-        protected double CalculateTargetAngle()
+        public double CalculateTargetAngle()
         {
             Vector2 offset = targetPosition - position;
 
