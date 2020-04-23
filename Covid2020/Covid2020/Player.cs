@@ -28,8 +28,6 @@ namespace Covid2020
         public Player(Vector2 startPosition, int speed)
             : base(startPosition, speed)
         {
-            position = startPosition;
-            moveSpeed = speed;
         }
 
         public override void Draw(CanvasDrawingSession drawSession) 
