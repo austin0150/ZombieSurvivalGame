@@ -114,7 +114,7 @@ namespace Covid2020
             {
                 if(timer.ElapsedMilliseconds > 1000)
                 {
-                    Bullet newbull = new Bullet(45, BulletImg, covidGame.player.position);
+                    Bullet newbull = new Bullet(covidGame.player.CalculateTargetAngle(), BulletImg, covidGame.player.position);
                     covidGame.bullets.Add(newbull);
                     SHOTCOUNTER = 5;
                     timer.Restart();
