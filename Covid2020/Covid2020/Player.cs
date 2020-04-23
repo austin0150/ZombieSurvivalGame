@@ -10,18 +10,12 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace Covid2020.Assets
+namespace Covid2020
 {
-    class Player
+    class Player : Character
     {
         public List<CanvasBitmap> aimingBitmaps;
         public List<CanvasBitmap> reloadBitmaps;
-
-        public CanvasBitmap testBitmap;
-
-        public Vector2 position;
-        public Vector2 pointPosition;
-        public int moveSpeed;
 
         public bool moveUp;
         public bool moveDown;
@@ -31,37 +25,14 @@ namespace Covid2020.Assets
         public bool idle;
         public bool reloading;
 
-        static double[] directionAngles =
+        public Player(Vector2 startPosition, int speed)
+            : base(startPosition, speed)
         {
-            0.50 * Math.PI, // Down
-            0.75 * Math.PI, // DownLeft
-            1.00 * Math.PI, // Left
-            1.25 * Math.PI, // UpLeft
-            1.50 * Math.PI, // Up
-            1.75 * Math.PI, // UpRight
-            0.00 * Math.PI, // Right
-            0.25 * Math.PI  // DownRight
-        };
-
-        public enum Direction
-        {
-            Down,
-            DownLeft,
-            Left,
-            UpLeft,
-            Up,
-            UpRight,
-            Right,
-            DownRight
-        }
-
-        public Player(Vector2 startPos, int speed)
-        {
-            position = startPos;
+            position = startPosition;
             moveSpeed = speed;
         }
 
-        public void Draw(CanvasDrawingSession drawSession)
+        public override void Draw(CanvasDrawingSession drawSession) 
         {
             Direction aimDirection = CalculateAimDirection();
             int assetIndex = (int)aimDirection;
@@ -102,36 +73,6 @@ namespace Covid2020.Assets
             {
                 position.X -= moveSpeed;
             }
-        }
-
-        private Direction CalculateAimDirection()
-        {
-            Vector2 offset = pointPosition - position;
-
-            Vector2 normOffset = Vector2.Normalize(offset);
-
-            double angle = Math.Atan2(normOffset.Y, normOffset.X);
-
-            while (angle < 0)
-                angle += Math.PI * 2;
-
-            double bestDirectionScore = double.MaxValue;
-            Direction bestDirection = Direction.Down;
-
-            foreach (Direction direction in Enum.GetValues(typeof(Direction)))
-            {
-                var directionAngle = directionAngles[(int)direction];
-
-                var score = Math.Abs(directionAngle - angle);
-
-                if (score < bestDirectionScore)
-                {
-                    bestDirectionScore = score;
-                    bestDirection = direction;
-                }
-            }
-
-            return bestDirection;
         }
     }
 }

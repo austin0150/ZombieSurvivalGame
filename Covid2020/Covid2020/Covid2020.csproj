@@ -119,6 +119,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Character.cs" />
+    <Compile Include="Zombie.cs" />
     <Compile Include="GameAssets.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="CovidGame.cs" />
