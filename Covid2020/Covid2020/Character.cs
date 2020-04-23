@@ -10,9 +10,6 @@ namespace Covid2020
 {
     abstract class Character
     {
-        public List<CanvasBitmap> zombieBitmaps;
-        public CanvasBitmap deadZombieBitmap;
-
         public Vector2 position;
         public Vector2 targetPosition;
 
