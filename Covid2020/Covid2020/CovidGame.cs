@@ -8,15 +8,25 @@ namespace Covid2020
     {
         public bool GameOver { get; set; }
         public Player player;
+        public List<Bullet> bullets;
 
         public CovidGame(Vector2 SpawnPos)
         {
             player = new Player(SpawnPos, 5);
+            bullets = new List<Bullet>();
         }
 
         public void Draw(CanvasDrawingSession drawingSession)
         {
             player.Draw(drawingSession);
+
+            for(int i =0; i < bullets.Count; i++)
+            { 
+                if(!bullets[i].Valid)
+                {
+                    bullets.RemoveAt(i);
+                }
+            }
         }
 
         public void Update()

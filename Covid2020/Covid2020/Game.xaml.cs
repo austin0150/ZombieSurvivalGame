@@ -30,6 +30,7 @@ namespace Covid2020
         private bool PAUSED;
         private int SHOTCOUNTER;
         private CanvasBitmap background;
+        private CanvasBitmap BulletImg;
         private MediaPlayer GUNSHOTMEDIA;
         private Stopwatch timer;
 
@@ -113,6 +114,8 @@ namespace Covid2020
             {
                 if(timer.ElapsedMilliseconds > 1000)
                 {
+                    Bullet newbull = new Bullet(45, BulletImg, covidGame.player.position);
+                    covidGame.bullets.Add(newbull);
                     SHOTCOUNTER = 5;
                     timer.Restart();
                     GUNSHOTMEDIA.Play();
@@ -150,6 +153,11 @@ namespace Covid2020
                     //set laser sight
                     args.DrawingSession.DrawLine(point1, point2, color, 5);
 
+                    foreach(Bullet bullet in covidGame.bullets)
+                    {
+                        bullet.Draw(args.DrawingSession);
+                    }
+
                     if(SHOTCOUNTER > 0)
                     {
 
@@ -176,7 +184,7 @@ namespace Covid2020
         async Task CreateResources(Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedControl sender)
         {
             background = await CanvasBitmap.LoadAsync(sender, "Assets/floor.jpg");
-            
+            BulletImg = await CanvasBitmap.LoadAsync(sender, "Assets/Red_Virus.png");
 
             List <CanvasBitmap> aimAssets = new List<CanvasBitmap>();
             foreach (string aimAsset in GameAssets.PlayerAiming)
