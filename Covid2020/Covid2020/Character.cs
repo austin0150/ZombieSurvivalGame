@@ -12,7 +12,7 @@ namespace Covid2020
     {
         public Vector2 position;
         public Vector2 targetPosition;
-
+        public bool destroyed;
         public int moveSpeed;
 
         protected static double[] directionAngles =
@@ -43,6 +43,7 @@ namespace Covid2020
         {
             this.position = startPosition;
             this.moveSpeed = speed;
+            this.destroyed = false;
         }
 
         public virtual void Draw(CanvasDrawingSession drawSession) { }
@@ -62,7 +63,7 @@ namespace Covid2020
 
         public virtual void RegisterDamage()
         {
-
+            this.destroyed = true;
         }
 
         protected Direction CalculateAimDirection()
