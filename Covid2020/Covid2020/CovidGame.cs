@@ -33,93 +33,107 @@ namespace Covid2020
 
         public void Draw(CanvasDrawingSession drawingSession)
         {
-            player.Draw(drawingSession);
+            if (!GameOver)
+            {
+                player.Draw(drawingSession);
 
-            for(int i =0; i < bullets.Count; i++)
-            { 
-                if(!bullets[i].Valid)
+                for (int i = 0; i < bullets.Count; i++)
                 {
-                    bullets.RemoveAt(i);
+                    if (!bullets[i].Valid)
+                    {
+                        bullets.RemoveAt(i);
+                    }
                 }
-            }
 
-            for (int index = 0; index < zombies.Count; index++)
-            {
-                zombies[index].Draw(drawingSession);
-            }
-
-            if (spawnStopwatch.ElapsedMilliseconds < 30000)
-            {
-                if (spawnInc.ElapsedMilliseconds > 5000)
+                for (int index = 0; index < zombies.Count; index++)
                 {
-                    Zombie zombie = new Zombie(spawnPos, 2);
-                    zombie.zombieBitmaps = zombieMovement;
-                    zombies.Add(zombie);
-                    spawnInc.Reset();
-                    spawnInc.Start();
+                    zombies[index].Draw(drawingSession);
                 }
-            }
-            else if (spawnStopwatch.ElapsedMilliseconds < 60000)
-            {
-                if (spawnInc.ElapsedMilliseconds > 4000)
-                {
-                    Zombie zombie = new Zombie(spawnPos, 2);
-                    zombie.zombieBitmaps = zombieMovement;
-                    zombies.Add(zombie);
-                    spawnInc.Reset();
-                    spawnInc.Start();
-
-                }
-            }
-            else if (spawnStopwatch.ElapsedMilliseconds < 100000)
-            {
-                if (spawnInc.ElapsedMilliseconds > 3000)
-                {
-                    Zombie zombie = new Zombie(spawnPos, 2);
-                    zombie.zombieBitmaps = zombieMovement;
-                    zombies.Add(zombie);
-                    spawnInc.Reset();
-                    spawnInc.Start();
-
-                }
-            }
-            else if (spawnStopwatch.ElapsedMilliseconds < 160000)
-            {
-                if (spawnInc.ElapsedMilliseconds > 2000)
-                {
-                    Zombie zombie = new Zombie(spawnPos, 3);
-                    zombie.zombieBitmaps = zombieMovement;
-                    zombies.Add(zombie);
-                    spawnInc.Reset();
-                    spawnInc.Start();
-
-                }
-            }
-            else
-            {
-                if (spawnInc.ElapsedMilliseconds > 1000)
-                {
-                    Zombie zombie = new Zombie(spawnPos, 4);
-                    zombie.zombieBitmaps = zombieMovement;
-                    zombies.Add(zombie);
-                    spawnInc.Reset();
-                    spawnInc.Start();
-
-                }
-            }
-
-            player.UpdatePosition();
-
-            for (int index = 0; index < zombies.Count; index++)
-            {
-                zombies[index].targetPosition = player.position;
-                zombies[index].UpdatePosition();
             }
         }
 
         public void Update()
         {
- 
+            if (!GameOver)
+            {
+                if (spawnStopwatch.ElapsedMilliseconds < 30000)
+                {
+                    if (spawnInc.ElapsedMilliseconds > 5000)
+                    {
+                        Zombie zombie = new Zombie(spawnPos, 2);
+                        zombie.zombieBitmaps = zombieMovement;
+                        zombies.Add(zombie);
+                        spawnInc.Reset();
+                        spawnInc.Start();
+                    }
+                }
+                else if (spawnStopwatch.ElapsedMilliseconds < 60000)
+                {
+                    if (spawnInc.ElapsedMilliseconds > 4000)
+                    {
+                        Zombie zombie = new Zombie(spawnPos, 2);
+                        zombie.zombieBitmaps = zombieMovement;
+                        zombies.Add(zombie);
+                        spawnInc.Reset();
+                        spawnInc.Start();
+
+                    }
+                }
+                else if (spawnStopwatch.ElapsedMilliseconds < 100000)
+                {
+                    if (spawnInc.ElapsedMilliseconds > 3000)
+                    {
+                        Zombie zombie = new Zombie(spawnPos, 2);
+                        zombie.zombieBitmaps = zombieMovement;
+                        zombies.Add(zombie);
+                        spawnInc.Reset();
+                        spawnInc.Start();
+
+                    }
+                }
+                else if (spawnStopwatch.ElapsedMilliseconds < 160000)
+                {
+                    if (spawnInc.ElapsedMilliseconds > 2000)
+                    {
+                        Zombie zombie = new Zombie(spawnPos, 3);
+                        zombie.zombieBitmaps = zombieMovement;
+                        zombies.Add(zombie);
+                        spawnInc.Reset();
+                        spawnInc.Start();
+
+                    }
+                }
+                else
+                {
+                    if (spawnInc.ElapsedMilliseconds > 1000)
+                    {
+                        Zombie zombie = new Zombie(spawnPos, 4);
+                        zombie.zombieBitmaps = zombieMovement;
+                        zombies.Add(zombie);
+                        spawnInc.Reset();
+                        spawnInc.Start();
+
+                    }
+                }
+
+                player.UpdatePosition();
+
+                for (int index = 0; index < zombies.Count; index++)
+                {
+                    if (zombies[index].destroyed)
+                    {
+                        zombies.RemoveAt(index);
+                    }
+
+                    zombies[index].targetPosition = player.position;
+                    zombies[index].UpdatePosition();
+                }
+
+                if(player.destroyed)
+                {
+                    GameOver = true;
+                }
+            }
         }
 
         public void SetPlayerMoveUp(bool move)
