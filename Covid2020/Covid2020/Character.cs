@@ -15,6 +15,8 @@ namespace Covid2020
         public bool destroyed;
         public int moveSpeed;
 
+        // Some of the logic for this function was pulled from the Win2d examples repository by Microsoft.
+        // Source: https://github.com/microsoft/Win2D-Samples
         protected static double[] directionAngles =
         {
             0.50 * Math.PI, // Down
@@ -27,6 +29,8 @@ namespace Covid2020
             0.25 * Math.PI  // DownRight
         };
 
+        // Some of the logic for this function was pulled from the Win2d examples repository by Microsoft.
+        // Source: https://github.com/microsoft/Win2D-Samples
         public enum Direction
         {
             Down,
@@ -66,6 +70,8 @@ namespace Covid2020
             this.destroyed = true;
         }
 
+        // Some of the logic for this function was pulled from the Win2d examples repository by Microsoft.
+        // Source: https://github.com/microsoft/Win2D-Samples
         protected Direction CalculateAimDirection()
         {
             double angle = this.CalculateTargetAngle();
