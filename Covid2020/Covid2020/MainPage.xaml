@@ -13,6 +13,7 @@
         <Button x:Name="Start_Button" Content="Start" Margin="0,253,0,0" VerticalAlignment="Top" Height="52" Width="230" HorizontalAlignment="Center" FontSize="18" Click="Start_Button_Click"/>
         <Button x:Name="Exit_Button" Content="Exit" Margin="0,406,0,0" VerticalAlignment="Top" Height="52" Width="230" HorizontalAlignment="Center" FontSize="18" Click="Exit_Button_Click"/>
         <Button x:Name="ControlMenu_Button" Content="Controls" Margin="0,328,0,0" VerticalAlignment="Top" Height="52" Width="230" HorizontalAlignment="Center" FontSize="18" Click="ControlMenu_Button_Click"/>
+        <Button x:Name="Credits_Button" Content="Credits" HorizontalAlignment="Center" Width="230" Height="50" Click="Credits_Button_Click"/>
         <Grid x:Name="Controls_Grid" Background="#FFCFCFCF" Margin="329,69,281,151" Visibility="Collapsed">
             <TextBlock HorizontalAlignment="Center" Margin="0,56,0,0" Text="Controls" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
             <TextBlock HorizontalAlignment="Left" Margin="111,146,0,0" Text="Move Left : A" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="109" FontSize="18"/>
@@ -27,6 +28,18 @@
             <TextBlock HorizontalAlignment="Left" Margin="109,291,0,0" Text="Aim : Mouse Position" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="181" FontSize="18"/>
             <Button Content="Return To Menu" Margin="264,382,0,0" VerticalAlignment="Top" Height="49" Width="136" FontSize="16" Click="Button_Click"/>
             <TextBlock HorizontalAlignment="Left" Margin="109,320,0,0" Text="Exit to Menu : Esc." TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="181" FontSize="18"/>
+        </Grid>
+        <Grid x:Name="Credits_Grid" Background="#FFCFCFCF" Margin="329,69,281,151" Visibility="Collapsed">
+            <TextBlock Margin="50" Foreground="Black" TextWrapping="Wrap" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top">Credits:
+            Creators: Jason Hogan, Tristan Wojtas, Austin Johanningsmeier. 
+            Date: 04/24/2020. 
+            Thanks to https://opengameart.org/content/walking-zombie-sheet.
+            Thanks to https://opengameart.org/content/kyrises-free-16x16-rpg-icon-pack.
+            Thanks to https://opengameart.org/content/virus-various-colors.
+            Thanks to https://github.com/microsoft/Win2D-Samples.
+            Thanks for a great semester Eric Charnesky! 
+            </TextBlock>
+            <Button Content="Return To Menu" FontSize="16" Click="Credits_Return_Button_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
         </Grid>
     </Grid>
 
