@@ -49,6 +49,29 @@ namespace Covid2020
                 {
                     zombies[index].Draw(drawingSession);
                 }
+
+                for(int i = 0; i < bullets.Count; i++)
+                {
+                    double bulletX = bullets[i].position.X + 20;
+                    double bulletY = bullets[i].position.Y + 20;
+                    double ZombX = 0;
+                    double ZombY = 0;
+                    double xRangeLow = bulletX - 40;
+                    double xRangeHigh = bulletX + 40;
+                    double yRangeLow = bulletY - 40;
+                    double yRangeHigh = bulletY + 40;
+                    foreach(Zombie zomb in zombies)
+                    {
+                        ZombX = zomb.position.X + 50;
+                        ZombY = zomb.position.Y + 50;
+
+                        if((ZombX > xRangeLow && ZombX < xRangeHigh) && (ZombY > yRangeLow && ZombY < yRangeHigh))
+                        {
+                            zomb.RegisterDamage();
+                            bullets[i].Valid = false;
+                        }
+                    }
+                }
             }
         }
 
@@ -124,9 +147,12 @@ namespace Covid2020
                     {
                         zombies.RemoveAt(index);
                     }
-
-                    zombies[index].targetPosition = player.position;
-                    zombies[index].UpdatePosition();
+                    else
+                    {
+                        zombies[index].targetPosition = player.position;
+                        zombies[index].UpdatePosition();
+                    }
+                    
                 }
 
                 if(player.destroyed)
