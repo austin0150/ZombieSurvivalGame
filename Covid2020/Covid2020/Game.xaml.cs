@@ -40,7 +40,7 @@ namespace Covid2020
 
             PAUSED = false;
             SHOTCOUNTER = 0;
-            covidGame = new CovidGame(canvas.Size.ToVector2()/2);
+            covidGame = new CovidGame(new Vector2(300,300));
 
             Window.Current.CoreWindow.KeyDown += Canvas_KeyDown;
             Window.Current.CoreWindow.KeyUp += Canvas_KeyUp;
@@ -120,7 +120,6 @@ namespace Covid2020
                     timer.Restart();
                     GUNSHOTMEDIA.Play();
                 }
-                
             }
         }
 
