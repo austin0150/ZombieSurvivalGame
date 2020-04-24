@@ -174,6 +174,11 @@ namespace Covid2020
                 }
                 
             }
+            else
+            {
+
+                GameOver_Grid.Visibility = Visibility.Visible;
+            }
         }
 
         private void Canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
@@ -227,6 +232,16 @@ namespace Covid2020
         private void PauseMenuReset_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Game));
+        }
+
+        private void PlayAgain_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Game));
+        }
+
+        private void ReturnToMenu_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }
