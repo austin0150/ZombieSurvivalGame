@@ -3,6 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
+using System.Text;
+using System.Threading.Tasks;
+using Windows.Foundation;
+using Windows.UI;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Covid2020
@@ -10,7 +15,13 @@ namespace Covid2020
     class CovidGame
     {
         public bool GameOver { get; set; }
+
         public Player player;
+        public int NumberOfKills { get; set; }
+        public double NumberShotsFired { get; set; }
+        public double NumberShotsRegistered { get; set; }
+        public double Accuracy { get; set; }
+        private Stopwatch Clock;
         public List<Bullet> bullets;
         public List<Zombie> zombies;
         public List<CanvasBitmap> zombieMovement;
@@ -27,12 +38,45 @@ namespace Covid2020
             this.spawnInc = new Stopwatch();
             this.spawnInc.Start();
             player = new Player(SpawnPos, 5);
+            Clock = new Stopwatch();
+            Clock.Start();
             bullets = new List<Bullet>();
             zombies = new List<Zombie>();
         }
 
         public void Draw(CanvasDrawingSession drawingSession)
         {
+            Vector2 ScoreText = new Vector2();
+            ScoreText.X = 140;
+            ScoreText.Y = 10;
+            player.Draw(drawingSession);
+            drawingSession.DrawText("SCORE", ScoreText, Colors.Black);
+
+            Vector2 ScoreNumber = new Vector2();
+            ScoreNumber.X = 230;
+            ScoreNumber.Y = 10;
+            var currentScore = GetScore().ToString();
+            player.Draw(drawingSession);
+            drawingSession.DrawText(currentScore, ScoreNumber, Colors.Black);
+
+            Vector2 ClockText = new Vector2();
+            ClockText.X = 740;
+            ClockText.Y = 10;
+            player.Draw(drawingSession);
+            drawingSession.DrawText("TIME", ClockText, Colors.Black);
+
+            Vector2 ClockTime = new Vector2();
+            ClockTime.X = 800;
+            ClockTime.Y = 10;
+            var currentTime = Clock.Elapsed.ToString();
+            player.Draw(drawingSession);
+            drawingSession.DrawText(currentTime, ClockTime, Colors.Black);
+
+            Vector2 Title = new Vector2();
+            Title.X = 470;
+            Title.Y = 10;
+            player.Draw(drawingSession);
+            drawingSession.DrawText("COVID2020", Title, Colors.Black);
             if (!GameOver)
             {
                 player.Draw(drawingSession);
@@ -209,7 +253,32 @@ namespace Covid2020
             this.player.aimingBitmaps = playerMoveBitmaps;
             this.player.reloadBitmaps = playerReloadBitmaps;
         }
+        //Increase score
+        public void IncreaseScore()
+        {
+            NumberOfKills = NumberOfKills + 1;
+        }
 
+        // Get score
+        public int GetScore()
+        {
+            return NumberOfKills;
+        }
+
+        //Start time
+        public void StartClock()
+        {
+
+        }
+
+        //Get Time
+        public string GetClock()
+        {
+            return "100.00";
+        }
+        //End game
+
+        //Display running scoreboard
 
     }
 }

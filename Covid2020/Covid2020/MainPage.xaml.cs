@@ -49,6 +49,13 @@ namespace Covid2020
             this.Frame.Navigate(typeof(Game));
         }
 
-        
+        private void Credits_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Credits_Grid.Visibility = Visibility.Visible;
+        }
+        private void Credits_Return_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Credits_Grid.Visibility = Visibility.Collapsed;
+        }
     }
 }

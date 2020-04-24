@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\floor.jpg" />
+    <Content Include="Assets\Green_Virus.png" />
     <Content Include="Assets\GUNSHOT.mp3" />
     <Content Include="Assets\pumpkin.png" />
     <Content Include="Assets\Red_Virus.png" />

@@ -30,6 +30,8 @@ namespace Covid2020
         private bool PAUSED;
         private int SHOTCOUNTER;
         private CanvasBitmap background;
+        private CanvasBitmap greenVirus;
+        private CanvasBitmap redVirus;
         private CanvasBitmap BulletImg;
         private MediaPlayer GUNSHOTMEDIA;
         private Stopwatch timer;
@@ -144,8 +146,11 @@ namespace Covid2020
             {
                 if(!PAUSED)
                 {
-                    args.DrawingSession.DrawImage(background);
+                    args.DrawingSession.DrawImage(background,0,50);
                     covidGame.Draw(args.DrawingSession);
+
+                    args.DrawingSession.DrawImage(greenVirus,370,0);
+                    args.DrawingSession.DrawImage(redVirus,625,0);
 
                     Color color = new Color();
                     color.A = 100;
@@ -179,7 +184,6 @@ namespace Covid2020
                         SHOTCOUNTER--;
                     }
                 }
-                
             }
             else
             {
@@ -198,6 +202,8 @@ namespace Covid2020
         async Task CreateResources(Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedControl sender)
         {
             background = await CanvasBitmap.LoadAsync(sender, "Assets/floor.jpg");
+            greenVirus = await CanvasBitmap.LoadAsync(sender, "Assets/Green_Virus.png");
+            redVirus = await CanvasBitmap.LoadAsync(sender, "Assets/Red_Virus.png");
             BulletImg = await CanvasBitmap.LoadAsync(sender, "Assets/Red_Virus.png");
 
             List <CanvasBitmap> playerAssets = new List<CanvasBitmap>();
