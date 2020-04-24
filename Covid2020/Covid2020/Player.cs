@@ -45,14 +45,10 @@ namespace Covid2020
                 {
                     drawSession.DrawImage(aimingBitmaps[assetIndex], position);
                 }
-                else
-                {
-
-                }
             }
         }
 
-        public void UpdatePosition()
+        public override void UpdatePosition()
         {
             if(moveUp)
             {

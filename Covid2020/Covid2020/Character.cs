@@ -45,10 +45,9 @@ namespace Covid2020
             this.moveSpeed = speed;
         }
 
-        public virtual void Draw(CanvasDrawingSession drawSession)
-        {
+        public virtual void Draw(CanvasDrawingSession drawSession) { }
 
-        }
+        public virtual void UpdatePosition() { }
 
         public double CalculateTargetAngle()
         {
