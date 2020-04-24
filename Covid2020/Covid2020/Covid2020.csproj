@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Bullet.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="Zombie.cs" />
     <Compile Include="GameAssets.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="CovidGame.cs" />
@@ -188,6 +191,14 @@
     <Content Include="Assets\Soldier\shoot\survivor-shoot_rifle_0.png" />
     <Content Include="Assets\Soldier\shoot\survivor-shoot_rifle_1.png" />
     <Content Include="Assets\Soldier\shoot\survivor-shoot_rifle_2.png" />
+    <Content Include="Assets\Zombie\zombie_down.png" />
+    <Content Include="Assets\Zombie\zombie_downleft.png" />
+    <Content Include="Assets\Zombie\zombie_downright.png" />
+    <Content Include="Assets\Zombie\zombie_left.png" />
+    <Content Include="Assets\Zombie\zombie_right.png" />
+    <Content Include="Assets\Zombie\zombie_up.png" />
+    <Content Include="Assets\Zombie\zombie_upleft.png" />
+    <Content Include="Assets\Zombie\zombie_upright.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

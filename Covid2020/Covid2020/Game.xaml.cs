@@ -1,5 +1,4 @@
-﻿using Covid2020.Assets;
-using Microsoft.Graphics.Canvas;
+﻿using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Brushes;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
@@ -33,6 +32,7 @@ namespace Covid2020
         private CanvasBitmap background;
         private CanvasBitmap greenVirus;
         private CanvasBitmap redVirus;
+        private CanvasBitmap BulletImg;
         private MediaPlayer GUNSHOTMEDIA;
         private Stopwatch timer;
 
@@ -42,7 +42,7 @@ namespace Covid2020
 
             PAUSED = false;
             SHOTCOUNTER = 0;
-            covidGame = new CovidGame(canvas.Size.ToVector2()/2);
+            covidGame = new CovidGame(new Vector2(300,300));
 
             Window.Current.CoreWindow.KeyDown += Canvas_KeyDown;
             Window.Current.CoreWindow.KeyUp += Canvas_KeyUp;
@@ -104,9 +104,17 @@ namespace Covid2020
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Escape)
             {
-                canvas.Paused = true;
-                PAUSED = true;
-                PauseMenu_Grid.Visibility = Visibility.Visible;
+                if(covidGame.GameOver)
+                {
+                    GameOverLoad();
+                }
+                else
+                {
+                    canvas.Paused = true;
+                    PAUSED = true;
+                    PauseMenu_Grid.Visibility = Visibility.Visible;
+                }
+                
             }
         }
 
@@ -116,11 +124,12 @@ namespace Covid2020
             {
                 if(timer.ElapsedMilliseconds > 1000)
                 {
+                    Bullet newbull = new Bullet(covidGame.player.CalculateTargetAngle(), BulletImg, covidGame.player.position);
+                    covidGame.bullets.Add(newbull);
                     SHOTCOUNTER = 5;
                     timer.Restart();
                     GUNSHOTMEDIA.Play();
                 }
-                
             }
         }
 
@@ -152,9 +161,14 @@ namespace Covid2020
                     Vector2 point1 = covidGame.player.position;
                     point1.X += 50;
                     point1.Y += 30;
-                    Vector2 point2 = covidGame.player.pointPosition;
+                    Vector2 point2 = covidGame.player.targetPosition;
                     //set laser sight
                     args.DrawingSession.DrawLine(point1, point2, color, 5);
+
+                    foreach(Bullet bullet in covidGame.bullets)
+                    {
+                        bullet.Draw(args.DrawingSession);
+                    }
 
                     if(SHOTCOUNTER > 0)
                     {
@@ -171,6 +185,13 @@ namespace Covid2020
                     }
                 }
             }
+            else
+            {
+                Vector2 textPoint = new Vector2();
+                textPoint.X = 250;
+                textPoint.Y = 250;
+                args.DrawingSession.DrawText("You are dead, press escape to exit", textPoint, Colors.Black);
+            }
         }
 
         private void Canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
@@ -183,15 +204,23 @@ namespace Covid2020
             background = await CanvasBitmap.LoadAsync(sender, "Assets/floor.jpg");
             greenVirus = await CanvasBitmap.LoadAsync(sender, "Assets/Green_Virus.png");
             redVirus = await CanvasBitmap.LoadAsync(sender, "Assets/Red_Virus.png");
+            BulletImg = await CanvasBitmap.LoadAsync(sender, "Assets/Red_Virus.png");
 
-            List <CanvasBitmap> aimAssets = new List<CanvasBitmap>();
+            List <CanvasBitmap> playerAssets = new List<CanvasBitmap>();
+            List<CanvasBitmap> zombies = new List<CanvasBitmap>();
+
             foreach (string aimAsset in GameAssets.PlayerAiming)
             {
-                aimAssets.Add(await CanvasBitmap.LoadAsync(sender, aimAsset));
+                playerAssets.Add(await CanvasBitmap.LoadAsync(sender, aimAsset));
+            }
+
+            foreach (string zombieAsset in GameAssets.ZombieMoving)
+            {
+                zombies.Add(await CanvasBitmap.LoadAsync(sender, zombieAsset));
             }
 
             // need to add the bitmaps for reloading
-            covidGame.SetBitmaps(aimAssets, new List<CanvasBitmap>());
+            covidGame.SetBitmaps(playerAssets, new List<CanvasBitmap>(), zombies, null);
         }
 
         private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
@@ -218,6 +247,21 @@ namespace Covid2020
         private void PauseMenuReset_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Game));
+        }
+
+        private void PlayAgain_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Game));
+        }
+
+        private void ReturnToMenu_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        public void GameOverLoad()
+        {
+            GameOver_Grid.Visibility = Visibility.Visible;
         }
     }
 }

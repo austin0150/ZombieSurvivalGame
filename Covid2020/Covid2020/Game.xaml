@@ -18,5 +18,11 @@
             <Button x:Name="PauseMenuReset_Button" Content="Reset" Margin="0,231,0,0" VerticalAlignment="Top" Height="39" Width="201" HorizontalAlignment="Center" Click="PauseMenuReset_Button_Click"/>
             <Button x:Name="PauseMenuExit_Button" Content="Exit" Margin="0,171,0,0" VerticalAlignment="Top" Height="39" Width="201" HorizontalAlignment="Center" Click="PauseMenuExit_Button_Click"/>
         </Grid>
+        <Grid x:Name="GameOver_Grid" Background="#FFBBBBBB" Margin="213,122,232,172" Visibility="Collapsed">
+            <TextBlock HorizontalAlignment="Left" Margin="278,57,0,0" Text="GAME OVER" TextWrapping="Wrap" VerticalAlignment="Top" Height="68" Width="284" FontSize="48" FontWeight="Bold" FocusVisualPrimaryBrush="#FFCF1414" Foreground="#FFD31616"/>
+            <Button x:Name="PlayAgain_Button" Content="Play Again" Margin="0,160,0,0" VerticalAlignment="Top" Height="35" Width="180" HorizontalAlignment="Center" Click="PlayAgain_Button_Click"/>
+            <Button x:Name="ReturnToMenu_Button" Content="Return to Menu" Margin="0,213,0,0" VerticalAlignment="Top" Height="35" Width="180" HorizontalAlignment="Center" Click="ReturnToMenu_Button_Click"/>
+            <TextBlock x:Name="GameOverScore_TextBlock" HorizontalAlignment="Left" Margin="371,306,0,0" Text="Score: 00" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="102" FontSize="22" FontWeight="Bold"/>
+        </Grid>
     </Grid>
 </Page>
