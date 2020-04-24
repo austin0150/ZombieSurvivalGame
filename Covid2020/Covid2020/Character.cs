@@ -60,6 +60,11 @@ namespace Covid2020
             return angle;
         }
 
+        public virtual void RegisterDamage()
+        {
+
+        }
+
         protected Direction CalculateAimDirection()
         {
             double angle = this.CalculateTargetAngle();

@@ -186,14 +186,21 @@ namespace Covid2020
             background = await CanvasBitmap.LoadAsync(sender, "Assets/floor.jpg");
             BulletImg = await CanvasBitmap.LoadAsync(sender, "Assets/Red_Virus.png");
 
-            List <CanvasBitmap> aimAssets = new List<CanvasBitmap>();
+            List <CanvasBitmap> playerAssets = new List<CanvasBitmap>();
+            List<CanvasBitmap> zombies = new List<CanvasBitmap>();
+
             foreach (string aimAsset in GameAssets.PlayerAiming)
             {
-                aimAssets.Add(await CanvasBitmap.LoadAsync(sender, aimAsset));
+                playerAssets.Add(await CanvasBitmap.LoadAsync(sender, aimAsset));
+            }
+
+            foreach (string zombieAsset in GameAssets.ZombieMoving)
+            {
+                zombies.Add(await CanvasBitmap.LoadAsync(sender, zombieAsset));
             }
 
             // need to add the bitmaps for reloading
-            covidGame.SetBitmaps(aimAssets, new List<CanvasBitmap>());
+            covidGame.SetBitmaps(playerAssets, new List<CanvasBitmap>(), zombies, null);
         }
 
         private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
