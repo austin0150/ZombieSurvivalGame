@@ -28,8 +28,6 @@ namespace Covid2020
         public Player(Vector2 startPosition, int speed)
             : base(startPosition, speed)
         {
-            position = startPosition;
-            moveSpeed = speed;
         }
 
         public override void Draw(CanvasDrawingSession drawSession) 
@@ -47,14 +45,10 @@ namespace Covid2020
                 {
                     drawSession.DrawImage(aimingBitmaps[assetIndex], position);
                 }
-                else
-                {
-
-                }
             }
         }
 
-        public void UpdatePosition()
+        public override void UpdatePosition()
         {
             if(moveUp)
             {

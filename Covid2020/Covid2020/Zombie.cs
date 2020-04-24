@@ -8,41 +8,46 @@ using System.Threading.Tasks;
 
 namespace Covid2020
 {
-    class Zombie
+    class Zombie : Character
     {
         public List<CanvasBitmap> zombieBitmaps;
         public CanvasBitmap deadZombieBitmap;
 
-        public Vector2 position;
-        public Vector2 targetPosition;
-
-        static double[] directionAngles =
+        public Zombie(Vector2 startPosition, int speed)
+            : base(startPosition, speed)
         {
-            0.50 * Math.PI, // Down
-            0.75 * Math.PI, // DownLeft
-            1.00 * Math.PI, // Left
-            1.25 * Math.PI, // UpLeft
-            1.50 * Math.PI, // Up
-            1.75 * Math.PI, // UpRight
-            0.00 * Math.PI, // Right
-            0.25 * Math.PI  // DownRight
-        };
-
-        public enum Direction
-        {
-            Down,
-            DownLeft,
-            Left,
-            UpLeft,
-            Up,
-            UpRight,
-            Right,
-            DownRight
+            
         }
 
-        public Zombie(Vector2 startPos, int speed)
+        public override void Draw(CanvasDrawingSession drawSession)
         {
+            Direction pointDirection = CalculateAimDirection();
 
+            int assetIndex = (int)pointDirection;
+
+            if (assetIndex < zombieBitmaps.Count)
+            {
+                drawSession.DrawImage(zombieBitmaps[assetIndex], position);
+            }
+        }
+
+        public override void UpdatePosition()
+        {
+            double angle = this.CalculateTargetAngle();
+
+            double x = 0;
+            double y = 0;
+
+            this.CalculateMovement(ref x, ref y, angle);
+
+            position.X = (float)x;
+            position.Y = (float)y;
+        }
+
+        public void CalculateMovement(ref double X, ref double Y, double angle)
+        {
+            Y = this.moveSpeed * (Math.Sin(angle));
+            X = this.moveSpeed * (Math.Cos(angle));;
         }
     }
 }

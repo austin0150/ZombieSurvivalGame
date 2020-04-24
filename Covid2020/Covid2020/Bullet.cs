@@ -11,7 +11,7 @@ namespace Covid2020
     class Bullet
     {
         public Vector2 position;
-        int speed = 20;
+        int speed = 30;
         double Direction;
         CanvasBitmap img;
         public bool Valid = true;
