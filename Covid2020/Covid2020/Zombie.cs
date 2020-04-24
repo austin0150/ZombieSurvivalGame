@@ -35,19 +35,18 @@ namespace Covid2020
         {
             double angle = this.CalculateTargetAngle();
 
-            double x = 0;
-            double y = 0;
+            Vector2 moveVector = this.CalculateMovement(angle);
 
-            this.CalculateMovement(ref x, ref y, angle);
-
-            position.X = (float)x;
-            position.Y = (float)y;
+            this.position += moveVector;
         }
 
-        public void CalculateMovement(ref double X, ref double Y, double angle)
+        public Vector2 CalculateMovement(double angle)
         {
-            Y = this.moveSpeed * (Math.Sin(angle));
-            X = this.moveSpeed * (Math.Cos(angle));;
+            Vector2 returnVector = new Vector2();
+            returnVector.Y = (float) (this.moveSpeed * (Math.Sin(angle)));
+            returnVector.X = (float) (this.moveSpeed * (Math.Cos(angle)));
+
+            return returnVector;
         }
     }
 }
