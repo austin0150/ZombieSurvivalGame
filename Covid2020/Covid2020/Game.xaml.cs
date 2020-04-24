@@ -102,9 +102,17 @@ namespace Covid2020
             }
             if (args.VirtualKey == Windows.System.VirtualKey.Escape)
             {
-                canvas.Paused = true;
-                PAUSED = true;
-                PauseMenu_Grid.Visibility = Visibility.Visible;
+                if(covidGame.GameOver)
+                {
+                    GameOverLoad();
+                }
+                else
+                {
+                    canvas.Paused = true;
+                    PAUSED = true;
+                    PauseMenu_Grid.Visibility = Visibility.Visible;
+                }
+                
             }
         }
 
@@ -175,8 +183,10 @@ namespace Covid2020
             }
             else
             {
-
-                GameOver_Grid.Visibility = Visibility.Visible;
+                Vector2 textPoint = new Vector2();
+                textPoint.X = 250;
+                textPoint.Y = 250;
+                args.DrawingSession.DrawText("You are dead, press escape to exit", textPoint, Colors.Black);
             }
         }
 
@@ -241,6 +251,11 @@ namespace Covid2020
         private void ReturnToMenu_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
+        }
+
+        public void GameOverLoad()
+        {
+            GameOver_Grid.Visibility = Visibility.Visible;
         }
     }
 }
