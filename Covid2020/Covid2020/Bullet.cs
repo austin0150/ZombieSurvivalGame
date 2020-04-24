@@ -13,7 +13,7 @@ namespace Covid2020
         public Vector2 position;
         int speed = 30;
         double Direction;
-        CanvasBitmap img;
+        public CanvasBitmap img;
         public bool Valid = true;
 
 
