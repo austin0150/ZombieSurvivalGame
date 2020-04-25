@@ -107,6 +107,7 @@ namespace Covid2020
                 if(covidGame.GameOver)
                 {
                     GameOverLoad();
+                    GameOverScore_TextBlock.Text = ("SCORE: " + covidGame.GetScore());
                 }
                 else
                 {

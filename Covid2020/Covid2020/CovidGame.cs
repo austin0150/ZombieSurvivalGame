@@ -207,6 +207,7 @@ namespace Covid2020
                         {
                             zomb.RegisterDamage();
                             bullets[i].Valid = false;
+                            IncreaseScore();
                         }
                     }
                 }
